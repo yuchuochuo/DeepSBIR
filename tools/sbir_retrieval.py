@@ -93,8 +93,8 @@ def compute_view_specific_distance(sketch_feats, image_feats):
     num_sketches, num_images = sketch_feats.shape[0], image_feats.shape[0]
     multi_view_dists = np.zeros((NUM_VIEWS*2, num_sketches, num_images))
     for i in xrange(NUM_VIEWS):
-        multi_view_dists[i, ::] = ssd.cdist(sketch_feats[:, i, :], image_feats[:, i, :])
-        multi_view_dists[i+NUM_VIEWS, ::] = ssd.cdist(sketch_feats[:, i, :], image_feats[:, -i, :])
+        multi_view_dists[i, ::] = ssd.cdist(sketch_feats[:, i, :], image_feats[:, i, :], 'sqeuclidean')
+        multi_view_dists[i+NUM_VIEWS, ::] = ssd.cdist(sketch_feats[:, i, :], image_feats[:, -i, :], 'sqeuclidean')
     return multi_view_dists
 
 
